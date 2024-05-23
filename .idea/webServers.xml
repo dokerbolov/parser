@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d5c6fd11-97b2-4d98-9480-f530e450a3f3" name="parser">
+        <fileTransfer rootFolder="/var/www/parser" accessType="SFTP" host="10.0.26.216" port="22" sshConfigId="b3489f11-fc90-431b-9378-2fb3fdcfedf5" sshConfig="root@10.0.26.216:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

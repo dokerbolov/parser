@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Channels;
+use App\Models\Genre;
 use App\Models\Matches;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -14,7 +16,8 @@ class FormController extends Controller
     {
         $rules = [
             'title' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required|max:500',
+            'picture' => 'required|max:255',
             'channel_id' => 'required|max:255',
             'date_start' => 'required|date',
             'date_end' => 'required|date',
@@ -31,12 +34,14 @@ class FormController extends Controller
         $match = new Matches();
         $match->title = $request->title;
         $match->description = $request->description;
+        $match->picture = $request->picture;
         $match->channel = $request->channel_id;
+        $match->genre = $request->genre;
         $match->hash_id = Uuid::uuid4()->toString();
         $match->date_start = $request->date_start;
         $match->date_end = $request->date_end;
         if($match->save()){
-            return back()->with('success', 'Успешно создано');
+            return redirect()->route('list')->with('success', 'Успешно, создано событие');
         } else {
             return redirect()->back()
                 ->withErrors($validator)
@@ -44,10 +49,18 @@ class FormController extends Controller
         };
     }
 
+    public function create() {
+        $channels = Channels::all();
+        $genres = Genre::all();
+        return view('lists.form', compact('channels', 'genres'));
+    }
+
     public function edit($id)
     {
         $match = Matches::findOrFail($id);
-        return view('lists.edit', compact('match'));
+        $channels = Channels::all();
+        $genres = Genre::all();
+        return view('lists.edit', compact('match', 'channels', 'genres' ));
     }
 
     public function update(Request $request, $id)
@@ -55,11 +68,15 @@ class FormController extends Controller
         $match = Matches::findOrFail($id);
         $match->title = $request->title;
         $match->description = $request->description;
-        $match->channel = $request->channel_id;
+        $match->picture = $request->picture;
+        if(!empty($request->channel_id)){
+            $match->channel = $request->channel_id;
+        }
+        $match->genre = $request->genre;
         $match->date_start = $request->date_start;
         $match->date_end = $request->date_end;
         if($match->save()){
-            return back()->with('success', 'Данные успешно изменены');
+            return redirect()->route('list')->with('success', 'Успешно, изменено событие');
         } else {
             return redirect()->back()
                 ->withErrors('errors', 'Ошибка при изменении')

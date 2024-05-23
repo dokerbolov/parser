@@ -9,6 +9,31 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="parser">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/bootstrap" />
+            <excludedPath path="/config" />
+            <excludedPath path="/tests" />
+            <excludedPath path="/vendor" />
+            <excludedPath path="/.env" />
+            <excludedPath path="/.env.example" />
+            <excludedPath path="/.gitattributes" />
+            <excludedPath path="/.gitignore" />
+            <excludedPath path="/artisan" />
+            <excludedPath path="/gulpfile.js" />
+            <excludedPath path="/phpspec.yml" />
+            <excludedPath path="/phpunit.xml" />
+            <excludedPath path="/readme.md" />
+            <excludedPath path="/server.php" />
+            <excludedPath local="true" path="$PROJECT_DIR$/node_modules" />
+            <excludedPath path="/storage" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
     </serverData>
   </component>
 </project>

@@ -21,7 +21,7 @@
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
@@ -33,8 +33,9 @@
                 @if(Auth::guest())
                     <li><a href="{{ url('/list') }}">Главная</a></li>
                 @else
-                    <li><a href="{{ url('/list') }}">Список</a></li>
-                    <li><a href="{{ url('/channels') }}">Каналы</a></li>
+                    <li><a href="{{ url('/list') }}">Список программ</a></li>
+                    <li><a href="{{ url('/channel') }}">Каналы</a></li>
+                    <li><a href="{{ url('/genre') }}">Жанры</a></li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -57,7 +58,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
     @yield('content')
 </div> <!-- /container -->
 
